@@ -19,11 +19,15 @@ namespace ParallelProgramming.WebB
 
             // Web API routes
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "{controller}/{id}",
-                defaults: new { controller = "values", action = "get", id = RouteParameter.Optional }
-            );
+            config.MapHttpAttributeRoutes();
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "{controller}/{waitFor}",
+            //    defaults: new { controller = "values", action = "get", waitFor = RouteParameter.Optional }
+            //);
         }
     }
 }

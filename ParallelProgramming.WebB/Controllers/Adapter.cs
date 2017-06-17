@@ -15,10 +15,10 @@ namespace ParallelProgramming.WebB.Controllers
             _client.BaseAddress = _clientCBaseAddress;
 
         }
-        public string Get()
+        public async Task<string> Get(int waitFor)
         {
-            var foo = _client.GetAsync("/jobs/get").Result;
-            var bar = foo.Content.ReadAsStringAsync().Result;
+            HttpResponseMessage response = await _client.GetAsync($"/jobs/get/{waitFor}");
+            string bar = await response.Content.ReadAsAsync<string>();
 
             return bar;
         }

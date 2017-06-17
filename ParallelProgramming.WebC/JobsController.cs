@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -11,10 +12,17 @@ namespace ParallelProgramming.WebC.Controllers
     public class JobsController : ApiController
     {
 
-        [Route("get")]
-        public string Get()
+        [Route("get/{waitFor:int}")]
+        public string Get(int waitFor)
         {
-            return "Hello from C";
+
+            //Random random = new Random();
+            //int nextRandom = random.Next(0, 11);
+            //Thread.Sleep(nextRandom);
+
+            Thread.Sleep(waitFor);
+
+            return $"Hello from C.  Slept for {waitFor} seconds";
         }
 
     }

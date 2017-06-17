@@ -19,12 +19,13 @@ namespace ParallelProgramming.WebC
             HttpConfiguration config = new HttpConfiguration();
 
             config.MapHttpAttributeRoutes();
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "{controller}/{id}",
-                defaults: new { controller = "jobs", action = "get", id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "{controller}/{waitFor}",
+            //    defaults: new { controller = "jobs", action = "get", waitFor = RouteParameter.Optional }
+            //);
 
             appBuilder.UseWebApi(config);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,11 +17,11 @@ namespace ParallelProgramming.WebA.Controllers
             _adapter = new Adapter();
         }
 
-        public string Index()
+        public async Task<string> Index(int waitFor)
         {
 
             //string foo = "Hello from A";
-            string foo = _adapter.Get();
+            string foo = await _adapter.Get(waitFor);
 
             return foo;
         }

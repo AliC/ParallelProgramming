@@ -15,8 +15,8 @@ namespace ParallelProgramming.WebA
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{waitFor}",
+                defaults: new { controller = "Home", action = "Index", waitFor = UrlParameter.Optional }
             );
         }
     }
