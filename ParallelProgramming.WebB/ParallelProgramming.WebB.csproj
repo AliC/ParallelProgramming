@@ -208,6 +208,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Adapter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Job.cs" />
+    <Compile Include="Controllers\JobContainer.cs" />
+    <Compile Include="Controllers\RecommendedJobs.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

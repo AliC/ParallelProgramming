@@ -19,35 +19,12 @@ namespace ParallelProgramming.WebB.Controllers
             _adapter = new Adapter();
         }
 
-        [Route("get/{waitFor:int}")]
-        public async Task<string> Get(int waitFor)
+        [Route("get/{waitFor:int}/{throw:bool}")]
+        public async Task<JobContainer> Get(int waitFor, bool @throw)
         {
-            //return "Hello from B";
+            JobContainer jobcontainer = await _adapter.Get(waitFor, @throw);
 
-            string foo = await _adapter.Get(waitFor);
-
-            return foo;
-        }
-
-        // GET api/values/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return jobcontainer;
         }
     }
 }

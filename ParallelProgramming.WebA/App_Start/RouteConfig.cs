@@ -13,11 +13,13 @@ namespace ParallelProgramming.WebA
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{waitFor}",
-                defaults: new { controller = "Home", action = "Index", waitFor = UrlParameter.Optional }
-            );
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{waitFor}",
+            //    defaults: new { controller = "Home", action = "Index", waitFor = UrlParameter.Optional }
+            //);
         }
     }
 }

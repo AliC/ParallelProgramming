@@ -78,6 +78,7 @@
     <Compile Include="JobsController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recommendations.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

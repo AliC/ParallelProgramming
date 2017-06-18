@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -15,12 +17,23 @@ namespace ParallelProgramming.WebB.Controllers
             _client.BaseAddress = _clientCBaseAddress;
 
         }
-        public async Task<string> Get(int waitFor)
-        {
-            HttpResponseMessage response = await _client.GetAsync($"/jobs/get/{waitFor}");
-            string bar = await response.Content.ReadAsAsync<string>();
 
-            return bar;
+        public async Task<JobContainer> Get(int waitFor, bool @throw)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"/jobs/get/{waitFor}/{@throw}");
+
+            response.EnsureSuccessStatusCode();
+
+            RecommendedJobs recommendedJobs = await response.Content.ReadAsAsync<RecommendedJobs>();
+
+            List<Job> jobs = new List<Job>();
+            foreach(int jobId in recommendedJobs.JobIds)
+            {
+                jobs.Add(new Job { JobId = jobId, JobTitle = "Adding this job title" });
+            }
+
+            return new JobContainer { SiteId = recommendedJobs.SiteId, jobs = jobs };
+
         }
     }
 }

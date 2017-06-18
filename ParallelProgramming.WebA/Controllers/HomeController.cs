@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ParallelProgramming.WebA.Controllers
 {
+    [RoutePrefix("home")]
     public class HomeController : Controller
     {
         private Adapter _adapter;
@@ -17,27 +19,16 @@ namespace ParallelProgramming.WebA.Controllers
             _adapter = new Adapter();
         }
 
-        public async Task<string> Index(int waitFor)
+        [Route("index/{waitFor:int}/{throw:bool}")]
+        public async Task<string> Index(int waitFor, bool @throw)
         {
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            //string foo = "Hello from A";
-            string foo = await _adapter.Get(waitFor);
+            string recommendations = await _adapter.Get(waitFor, @throw);
 
-            return foo;
-        }
+            stopwatch.Stop();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return $"{recommendations}  Time elapsed is {stopwatch.Elapsed}.";
         }
     }
 }
